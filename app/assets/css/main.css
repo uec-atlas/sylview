@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+
+  --color-brand-50: #f3f8fc;
+  --color-brand-100: #e5f0f9;
+  --color-brand-200: #c6e1f1;
+  --color-brand-300: #93c8e6;
+  --color-brand-400: #5aabd6;
+  --color-brand-500: #3591c2;
+  --color-brand-600: #2678aa;
+  --color-brand-700: #1f5d85;
+  --color-brand-800: #1d4f6f;
+  --color-brand-900: #1d435d;
+  --color-brand-950: #132b3e;
+}
+
+@layer base {
+  :where(
+      a[href]:not([aria-disabled="true"]),
+      button:not(:disabled),
+      [role="button"]:not([aria-disabled="true"]),
+      summary
+    ) {
+    cursor: pointer;
+  }
+
+  :where(button:disabled, [aria-disabled="true"]) {
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: pnpm biome check --colors=off --write {staged_files}
+      glob: "*.{js,ts,vue,css,json}"
+      stage_fixed: true
+
+commit-msg:
+  jobs:
+    - run: pnpm commitlint --edit "$1" -c=false
