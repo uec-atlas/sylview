@@ -1,6 +1,6 @@
 <template>
   <UHeader
-    title="Sylview"
+    title="SylView"
     mode="drawer"
     :ui="{
       toggle: 'md:hidden',

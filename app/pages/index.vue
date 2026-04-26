@@ -1,9 +1,4 @@
-<script lang="ts" setup>
-  definePageMeta({
-    layout: "app",
-  });
-</script>
-
 <template>
-  <h1>Hello World</h1>
+  <h1>Hello</h1>
+  <NuxtLink to="/lectures">Go to Search</NuxtLink>
 </template>

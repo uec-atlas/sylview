@@ -1,4 +1,4 @@
 <template>
   <NavHeader />
-  <div class="h-full"><slot /></div>
+  <div class="h-[calc(100%-var(--ui-header-height))]"><slot /></div>
 </template>

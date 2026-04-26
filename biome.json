@@ -41,7 +41,7 @@
       "enabled": true,
       "attributePosition": "auto",
       "indentScriptAndStyle": true,
-      "whitespaceSensitivity": "ignore"
+      "whitespaceSensitivity": "strict"
     }
   },
   "assist": {
@@ -65,6 +65,11 @@
             "noUnusedVariables": "off",
             "noUnusedImports": "off"
           }
+        }
+      },
+      "html": {
+        "formatter": {
+          "indentScriptAndStyle": false
         }
       }
     }

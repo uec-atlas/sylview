@@ -2,8 +2,8 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 
 export const navItems: NavigationMenuItem[] = [
   {
-    label: "Home",
-    icon: "i-lucide-house",
-    active: true,
+    label: "科目検索",
+    icon: "i-lucide-search",
+    to: "/lectures",
   },
 ];

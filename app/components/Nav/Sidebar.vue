@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { navItems } from "./items";
+import { navItems } from "./items";
 </script>
 
 <template>
   <USidebar
+    collapsible="none"
     :ui="{
-      gap: 'h-[calc(100%-var(--ui-header-height))]',
-      container:
-        'absolute top-(--ui-header-height) bottom-0 h-[calc(100%-var(--ui-header-height))]',
+      root: 'hidden lg:block light:bg-elevated',
+      container: 'bg-default',
       body: 'p-2'
     }"
   >
@@ -15,7 +15,7 @@
       :items="navItems"
       orientation="vertical"
       :ui="{
-        link: 'p-3 overflow-hidden'
+        link: 'p-3 overflow-hidden light:data-active:before:bg-white'
       }"
     />
   </USidebar>
