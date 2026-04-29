@@ -1,0 +1,2 @@
+/api/lectures/*
+  Content-Type: application/json; charset=utf-8

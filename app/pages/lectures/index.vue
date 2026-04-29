@@ -16,11 +16,11 @@ useSeoMeta({
   title: "科目検索",
 });
 
-const { data } = useEducationLecturesData();
+const { data } = await useFetch("/api/lectures");
 
 const lectures = computed<TreeLectureItem[]>(() => {
   const rawLectures = data.value
-    ? Array.from(data.value.values())
+    ? Object.values(data.value)
         .filter((lecture) => lecture.year === 2026)
         .sort(sortByName)
     : [];
@@ -31,21 +31,21 @@ const lectures = computed<TreeLectureItem[]>(() => {
     R.entries(),
     R.map(([groupName, groupItems]): TreeLectureItem => {
       if (groupItems.length === 1) {
-        return {
-          ...groupItems[0],
+        return Object.assign(Object.create(groupItems[0]), {
           displayName: groupItems[0].name.ja,
           isGroup: false,
-        };
+        });
       }
 
       return {
         displayName: groupName,
         isGroup: true,
-        children: groupItems.map((item) => ({
-          ...item,
-          displayName: item.name.ja,
-          isGroup: false,
-        })),
+        children: groupItems.map((item) =>
+          Object.assign(Object.create(item), {
+            displayName: item.name.ja,
+            isGroup: false,
+          }),
+        ),
       };
     }),
     R.sort((a, b) => compareJaString(a.displayName, b.displayName)),

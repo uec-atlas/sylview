@@ -1,4 +1,4 @@
-import type { I18NString } from "~/types/rdf";
+import type { I18NString } from "#/shared/types/rdf";
 
 const replaceMap = {
   Ⅰ: 1,

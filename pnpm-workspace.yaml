@@ -1,1 +1,9 @@
+blockExoticSubdeps: true
 minimumReleaseAge: 1440
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - better-sqlite3
+  - esbuild
+  - lefthook
+  - vue-demi
+trustPolicy: no-downgrade

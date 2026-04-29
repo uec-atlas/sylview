@@ -2,6 +2,13 @@
 useSeoMeta({
   titleTemplate: (title) => (title ? `${title} | UEC SylView` : "UEC SylView"),
 });
+
+const nuxtApp = useNuxtApp();
+nuxtApp.hook("vue:error", (error, instance, info) => {
+  console.error("--- SSR VUE ERROR ---");
+  console.error(error); // ここにスタックトレースが出る
+  console.error("--- INFO ---", info);
+});
 </script>
 
 <template>
