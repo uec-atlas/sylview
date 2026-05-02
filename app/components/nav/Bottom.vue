@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { navItems } from "./items";
+import { useNavItems } from "./items";
 </script>
 
 <template>
   <UNavigationMenu
-    :items="navItems"
+    :items="useNavItems()"
     orientation="horizontal"
     :ui="{
       root: 'w-full h-16 justify-around bg-default border border-default border-b-0 rounded-t-xl shrink-0 lg:hidden py-1',

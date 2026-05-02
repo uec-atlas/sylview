@@ -5,7 +5,7 @@ import { uar } from "./shared/utils";
 export default defineNuxtConfig({
   compatibilityDate: "2026-04-25",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@vueuse/nuxt"],
+  modules: ["@nuxt/ui", "@vueuse/nuxt", "@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
   routeRules: {
     "/": {

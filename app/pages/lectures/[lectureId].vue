@@ -10,8 +10,19 @@ if (!lecture) {
 
 const { data: requirements } = await useFetch(`/api/lectures/${lectureId}/requirements`);
 
-definePageMeta({ layout: "app" });
+const isFromLectureList = useState("isFromLectureList", () => false);
+definePageMeta({
+  layout: "app",
+  middleware: (_to, from) => {
+    if (from.path === "/lectures") {
+      const isFromLectureList = useState("isFromLectureList", () => false);
+      isFromLectureList.value = true;
+    }
+  },
+});
 useSeoMeta({ title: lecture.name.ja });
+
+const router = useRouter();
 
 const groupedRequirements = computed(() =>
   R.pipe(
@@ -29,7 +40,18 @@ const groupedRequirements = computed(() =>
 <template>
   <UMain :ui="{ base: 'min-h-full' }">
     <UContainer :ui="{ base: 'flex flex-col gap-8 mb-4' }">
-      <UPageHeader :title="lecture.name.ja" :description="lecture.name.ja !== lecture.name.en ? lecture.name.en : ''" />
+      <UPageHeader :title="lecture.name.ja" :description="lecture.name.ja !== lecture.name.en ? lecture.name.en : ''">
+        <template #headline>
+          <UButton
+            @click="() => { isFromLectureList && router.back() }"
+            :href="isFromLectureList ? undefined: '/lectures'"
+            variant="link"
+            icon="mdi:arrow-left"
+            class="self-start px-0"
+            >科目検索に戻る</UButton
+          >
+        </template>
+      </UPageHeader>
 
       <UPageCard title="担当教員" icon="mdi:account-tie">
         <div v-if="lecture.instructors.length === 0" class="text-sm text-muted py-4">
@@ -54,6 +76,12 @@ const groupedRequirements = computed(() =>
       </UPageColumns>
 
       <UPageCard title="単位区分・進級審査" icon="mdi:book-open-variant">
+        <UAlert
+          color="warning"
+          variant="subtle"
+          description="以下の情報は完全ではない可能性があります。履修の判断にあたっては、必ずシラバス・学修要覧を確認してください。"
+        />
+
         <div v-if="groupedRequirements.length === 0" class="text-sm text-muted py-4">
           表示可能な情報は見つかりませんでした。
         </div>
