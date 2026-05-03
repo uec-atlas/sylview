@@ -32,14 +32,14 @@ export default defineNuxtConfig({
 
       for (const lecture of lectures) {
         const lectureId = lecture.id.replace("uar:education/", "");
-        ctx.routes.add(`/lectures/${lectureId}`);
+        ctx.routes.add(`/lectures/${lectureId}/`);
         ctx.routes.add(`/api/lectures/${lectureId}/`);
         ctx.routes.add(`/api/lectures/${lectureId}/requirements`);
       }
 
       for (const checkpoint of checkpoints) {
         const checkpointId = checkpoint.id.replace("uar:education/", "");
-        ctx.routes.add(`/checkpoints/${checkpointId}`);
+        ctx.routes.add(`/checkpoints/${checkpointId}/`);
         ctx.routes.add(`/api/checkpoints/${checkpointId}/`);
       }
     },

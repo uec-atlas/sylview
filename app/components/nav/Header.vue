@@ -16,7 +16,6 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 <template>
   <UHeader
-    title="SylView"
     mode="drawer"
     :ui="{
       toggle: 'md:hidden',
@@ -25,6 +24,11 @@ const items = computed<NavigationMenuItem[]>(() => [
       overlay: 'md:hidden'
     }"
   >
+    <template #title>
+      <NuxtLink to="/" class="flex items-center gap-2"
+        ><img src="/logo.svg" alt="UEC SylView" class="w-auto h-10"></NuxtLink
+      >
+    </template>
     <UNavigationMenu :items="items" />
     <template #body>
       <UNavigationMenu :items="items" orientation="vertical" />
