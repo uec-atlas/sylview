@@ -1,4 +1,4 @@
-import type { I18NString } from "#/shared/types/rdf";
+import type { I18NString } from "#shared/types/rdf";
 import { BaseEntity } from "./BaseEntity";
 import { Checkpoint } from "./Checkpoint";
 import { CourseCategory } from "./CourseCategory";
@@ -45,7 +45,7 @@ export class CoursePrerequisite {
     return Course.allCourses.get(this._courseId);
   }
 
-  toJSON(): Record<string, unknown> {
+  toJSON() {
     return {
       year: this.year,
       checkpoint: this._checkpointId,

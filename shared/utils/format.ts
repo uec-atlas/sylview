@@ -7,7 +7,9 @@ export const formatI18nText = (name?: { ja?: string; en?: string }, fallback = "
 
 export const formatCategoryName = (category?: CourseCategory): string[] => {
   if (!category) return [];
-  return [...ancestors(category, (cat) => cat.subCategoryOf)].reverse().map((cat) => formatI18nText(cat.name, cat.id));
+  return [category, ...ancestors(category, (cat) => cat.subCategoryOf)]
+    .reverse()
+    .map((cat) => formatI18nText(cat.name, cat.id));
 };
 
 export const formatOrganizationName = (organization?: Organization): string[] => {
@@ -28,7 +30,7 @@ export const formatOrganizationName = (organization?: Organization): string[] =>
     return next;
   };
 
-  const items = [...ancestors(organization, getParent)]
+  const items = [organization, ...ancestors(organization, getParent)]
     .reverse()
     .map((org) => org.name?.ja)
     .filter((name): name is string => !!name);

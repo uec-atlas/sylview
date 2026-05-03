@@ -10,6 +10,12 @@ export const useNavItems = () => {
       to: "/lectures",
       active: route.path.startsWith("/lectures"),
     },
+    {
+      label: "進級審査",
+      icon: "mdi:clipboard-check-outline",
+      to: "/checkpoints",
+      active: route.path.startsWith("/checkpoints"),
+    },
   ];
 
   return navItems;

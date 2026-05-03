@@ -1,4 +1,4 @@
-import type { I18NString } from "#/shared/types/rdf";
+import type { I18NString } from "#shared/types/rdf";
 import { BaseEntity } from "./BaseEntity";
 import { Course } from "./Course";
 import { CourseCategory } from "./CourseCategory";

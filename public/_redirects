@@ -1,1 +1,2 @@
 /api/lectures/:id  /api/lectures/:id/index  200
+/api/checkpoints/:id  /api/checkpoints/:id/index  200

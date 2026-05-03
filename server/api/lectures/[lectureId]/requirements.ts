@@ -1,6 +1,6 @@
 import * as R from "remeda";
 import { EducationDataManager } from "#server/utils/EducationDataManager";
-import { compareJaString, formatOrganizationName } from "#shared/utils";
+import { compareCheckpointType, compareJaString, formatOrganizationName } from "#shared/utils";
 
 export default defineEventHandler(async (event) => {
   const lectureId = getRouterParam(event, "lectureId");
@@ -19,7 +19,6 @@ export default defineEventHandler(async (event) => {
 
   if (!checkpoints || !mappings) throw createError({ statusCode: 500, statusMessage: "Data not loaded" });
 
-  // 講義が属するマッピング（分類）を取得
   const myCategoryMappings = [...mappings.values()].filter(
     (entry) => entry.year === targetYear && courseIds.some((id) => entry.courses.some((c) => c.id === id)),
   );
@@ -123,10 +122,7 @@ export default defineEventHandler(async (event) => {
 
   return R.pipe(
     [...result, ...categoryOnlyEntries],
-    R.sort((a, b) => {
-      const checkpoints = ["2年次終了時審査", "卒業研究着手審査", "卒業所要単位"];
-      return checkpoints.indexOf(a.name.ja) - checkpoints.indexOf(b.name.ja);
-    }),
+    R.sort(compareCheckpointType),
     R.sort((a, b) => compareJaString(a.organizationName, b.organizationName)),
   );
 });

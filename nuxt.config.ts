@@ -11,10 +11,16 @@ export default defineNuxtConfig({
     "/": {
       prerender: true,
     },
-    "/lectures/**": {
+    "/lectures/": {
       prerender: true,
     },
-    "/api/lectures/**": {
+    "/checkpoints/": {
+      prerender: true,
+    },
+    "/api/lectures/": {
+      prerender: true,
+    },
+    "/api/checkpoints/": {
       prerender: true,
     },
   },
@@ -22,12 +28,19 @@ export default defineNuxtConfig({
     async "prerender:routes"(ctx) {
       const response = await $fetch<{ items?: { id: string; type: string }[] }>(uar`/education/all`);
       const lectures = response.items?.filter((item) => item.type === "Lecture") || [];
+      const checkpoints = response.items?.filter((item) => item.type === "Checkpoint") || [];
 
       for (const lecture of lectures) {
         const lectureId = lecture.id.replace("uar:education/", "");
         ctx.routes.add(`/lectures/${lectureId}`);
         ctx.routes.add(`/api/lectures/${lectureId}/`);
         ctx.routes.add(`/api/lectures/${lectureId}/requirements`);
+      }
+
+      for (const checkpoint of checkpoints) {
+        const checkpointId = checkpoint.id.replace("uar:education/", "");
+        ctx.routes.add(`/checkpoints/${checkpointId}`);
+        ctx.routes.add(`/api/checkpoints/${checkpointId}/`);
       }
     },
   },

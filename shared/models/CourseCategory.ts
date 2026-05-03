@@ -1,4 +1,4 @@
-import type { I18NString } from "#/shared/types/rdf";
+import type { I18NString } from "#shared/types/rdf";
 import { BaseEntity } from "./BaseEntity";
 
 export interface RawCourseCategory {

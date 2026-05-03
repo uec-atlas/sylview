@@ -17,5 +17,8 @@ export default defineAppConfig({
         },
       ],
     },
+    link: {
+      base: "underline underline-offset-2",
+    },
   },
 });

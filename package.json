@@ -19,17 +19,20 @@
     "@vueuse/router": "^14.3.0",
     "better-sqlite3": "^12.9.0",
     "nuxt": "^4.4.4",
+    "pinia": "^3.0.4",
     "remeda": "^2.34.0",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.13",
+    "@biomejs/biome": "^2.4.14",
     "@commitlint/cli": "^20.5.3",
     "@commitlint/config-conventional": "^20.5.3",
     "@commitlint/types": "^20.5.0",
+    "@iconify-json/lucide": "^1.2.105",
     "@iconify-json/mdi": "^1.2.3",
     "devalue": "^5.8.0",
-    "lefthook": "^2.1.6"
+    "lefthook": "^2.1.6",
+    "reka-ui": "^2.9.6"
   }
 }

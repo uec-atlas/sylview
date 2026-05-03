@@ -1,2 +1,5 @@
 /api/lectures/*
   Content-Type: application/json; charset=utf-8
+
+/api/checkpoints/*
+  Content-Type: application/json; charset=utf-8

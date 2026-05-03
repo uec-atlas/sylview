@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { TableColumn, TableRow } from "@nuxt/ui";
+import type { ExpandedState } from "@tanstack/vue-table";
 import * as R from "remeda";
 
 interface TreeLectureItem extends Partial<Lecture> {
@@ -21,7 +22,7 @@ const lectures = computed(() =>
               `${lecture.name.ja} ${lecture.name.en} ${lecture.instructors?.map((i) => (i.name?.ja ?? "") + (i.name?.en ?? "")).join(" ")}`.toLowerCase(),
           }),
         )
-        .sort(sortByName)
+        .sort(compareByName)
     : [],
 );
 
@@ -127,17 +128,27 @@ const lecturesTree = computed<TreeLectureItem[]>(() =>
     R.sort((a, b) => compareJaString(a.displayName, b.displayName)),
   ),
 );
+
+const tableComponentRef = useTemplateRef("tableRef");
+const tableRef = computed(() => tableComponentRef.value?.$el ?? null);
+useRetainScroll(tableRef, "lecturesTableScrollState");
+
+const expandState = useSessionStorage<ExpandedState>("lecturesTableExpandState", () => ({}));
+watch(lecturesTree, () => {
+  expandState.value = {};
+});
 </script>
 
 <template>
   <UTable
+    ref="tableRef"
     :data="lecturesTree"
     :columns="columns"
     :getSubRows="(row) => row.children"
+    v-model:expanded="expandState"
     :ui="{
         root: 'w-full h-full grow min-h-64',
         base: 'flex-1 border-separate border-spacing-0 w-full min-w-3xl table-fixed',
-        tbody: '[&>tr]:last:[&>td]:border-b-0',
         tr: 'group',
         td: 'empty:p-0 group-has-[td:not(:empty)]:border-b border-default py-3',
       }"
